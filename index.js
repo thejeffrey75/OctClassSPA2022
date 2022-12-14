@@ -1,5 +1,5 @@
 import{Header, Nav, Main, Footer} from "./Components";
-import * as store from "./store"
+import * as store from "./store";
 import Navigo from "navigo";
 import {capitalize} from "lodash";
 import axios from "axios";
@@ -16,8 +16,18 @@ ${Header(state)}
 ${Nav(store.Links)}
 ${Main(state)}
 ${Footer()}`;
+afterRender();
 router.updatePageLinks();
 }
+
+
+function afterRender() {
+  // add menu toggle to bars icon in nav bar
+  document.querySelector(".fa-bars").addEventListener("click", () => {
+    document.querySelector("nav > ul").classList.toggle("hidden--mobile");
+  });
+}
+
 
 router.hooks({
   before: (done, params) => {
